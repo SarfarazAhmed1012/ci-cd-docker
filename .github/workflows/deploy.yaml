@@ -1,0 +1,21 @@
+name: Deploy to Docker Hub
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_SECRET}}
+          username: root
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /root/ci-cd-docker
+            git pull origin main
+            docker compose up -d --build
