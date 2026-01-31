@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Hello from CI-CD Dockerized Node.js App!' });
+    res.json({ message: 'Hello from CI-CD app!' });
 })
 
 app.listen(PORT, () => {
